@@ -24,6 +24,49 @@ app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
+// wildcard route to 404 page
+app.get('*', (req, res) =>
+res.sendFile(path.join(__dirname, 'public/404.html'))
+);
+
 // post 
+app.post('/notes', (req, res) => {
+  // read existing notes from db.json
+  fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to read notes from db.json' });
+      return;
+    }
+
+    // parse notes so we can push new note into it
+    let notes = JSON.parse(data);
+
+    // get title and text from the request body
+    const { title, text } = req.body;
+
+    // create a new note object
+    const newNote = {
+      title,
+      text,
+      // noteID (this is for deleting notes, if i decide to do it)
+    };
+
+    // add the new note to the array of notes
+    notes.push(newNote);
+
+    // write the updated notes array back to db.json
+    fs.writeFile(path.join(__dirname, 'db', 'db.json'), JSON.stringify(notes), (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to write notes to db.json' });
+        return;
+      }
+      console.log('A new note has been written to JSON file');
+      res.json(newNote); // respond with the newly created note
+    });
+  });
+});
+
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
