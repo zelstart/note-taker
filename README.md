@@ -32,6 +32,7 @@ To run the Note Taker locally on your machine, follow these steps:
 - Node.js
 - Express.js
 - UUID (for generating unique IDs for notes)
+- Mostly modified some of the code from this module's activities. 
 
 ## License
 MIT
