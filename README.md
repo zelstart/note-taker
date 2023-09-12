@@ -22,7 +22,7 @@ To run the Note Taker locally on your machine, follow these steps:
 5. Open your web browser and go to `http://localhost:3001` to access the Note Taker.
 
 ## Usage
-[Heroku Note Taker Demo](https://watch.screencastify.com/v/L7ygKo5SjnNzSRaevzJV)
+[Heroku Note Taker Demo](https://watch.screencastify.com/v/L7ygKo5SjnNzSRaevzJV)  
 If the link above does not work, you can find the demo videos in public/assets/demo-videos.
 1. Open the Note Taker in your web browser.
 2. Click on the "Get Started" button to access the notes interface.
