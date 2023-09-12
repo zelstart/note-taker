@@ -19,10 +19,21 @@ app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
-// get notes page
+// get notes html page
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
+
+// get notes from db.json
+app.get('/api/notes', (req, res) => {
+  fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    }
+    const notes = JSON.parse(data);
+    res.json(notes);
+  });
+});
 
 // wildcard route to 404 page
 app.get('*', (req, res) =>
