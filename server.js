@@ -26,9 +26,9 @@ app.get('/notes', (req, res) =>
 
 // get notes from db.json
 app.get('/api/notes', (req, res) => {
-  fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
     if (err) {
-      console.error(err);
+      console.error(err, 'Could not read db.json');
     }
     const notes = JSON.parse(data);
     res.json(notes);
@@ -53,9 +53,9 @@ app.post('/api/notes', (req, res) => {
     }
 
     // read existing notes from db.json
-    fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
       if (err) {
-        console.error(err);
+        console.error(err, 'Could not read db.json');
       } else {
         // parse notes so we can push new note into it
         let notes = JSON.parse(data);
@@ -64,7 +64,7 @@ app.post('/api/notes', (req, res) => {
         notes.push(newNote);
 
         // write the updated notes array back to db.json
-        fs.writeFile(path.join(__dirname, 'db', 'db.json'), JSON.stringify(notes, null, 2), (err) => {
+        fs.writeFile(path.join(__dirname, 'db/db.json'), JSON.stringify(notes, null, 2), (err) => {
           if (err) {
             console.error(err, 'There was a problem when tryiong to write to db.json.');
           }
@@ -78,9 +78,9 @@ app.post('/api/notes', (req, res) => {
 
 app.delete('/api/notes/:id', (req, res) => {
   const noteId = req.params.id;
-  fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
     if (err) {
-      console.error(err);
+      console.error(err, 'Could not read db.json');
     } else {
       let notes = JSON.parse(data);
 
@@ -88,7 +88,7 @@ app.delete('/api/notes/:id', (req, res) => {
       notes = notes.filter((note) => note.id !== noteId);
 
       // write the remaining notes back to db.json
-      fs.writeFile(path.join(__dirname, 'db', 'db.json'), JSON.stringify(notes, null, 2), (err) => {
+      fs.writeFile(path.join(__dirname, 'db/db.json'), JSON.stringify(notes, null, 2), (err) => {
         if (err) {
           console.error(err, 'There was a problem when tryiong to write to db.json.');
         }
