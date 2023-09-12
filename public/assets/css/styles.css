@@ -31,8 +31,8 @@ body {
 }
 
 .note-title {
-  height: 75px;
-  margin-top: 13px;
+  height: 76px;
+  margin-top: 5px;
   font-size: 3rem;
 }
 
@@ -73,6 +73,6 @@ body {
 .list-container .list-group-item {
   border-left: none;
   border-right: none;
-  padding: 20px;
+  padding: 26px;
   cursor: pointer;
 }
