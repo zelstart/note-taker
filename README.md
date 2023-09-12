@@ -36,7 +36,7 @@ If the link above does not work, you can find the demo videos in public/assets/d
 - Node.js
 - Express.js
 - UUID (for generating unique IDs for notes)
-- Mostly modified some of the code from this module's activities. 
+- Repurposed/modified some code from this module's activities (GET, POST and read/write files).
 
 ## License
 MIT
