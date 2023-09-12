@@ -71,8 +71,6 @@ app.post('/notes', (req, res) => {
         fs.writeFile(path.join(__dirname, 'db', 'db.json'), JSON.stringify(notes, null, 2), (err) => {
           if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Failed to write notes to db.json' });
-            return;
           }
           console.log('A new note has been written to JSON file');
           res.json(newNote); // respond with the newly created note
