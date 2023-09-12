@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require("fs");
 const path = require('path');
-
+const { v4: uuidv4 } = require('uuid');
 const PORT = process.env.PORT || 3001;
 
 const app = express()
@@ -35,13 +35,8 @@ app.get('/api/notes', (req, res) => {
   });
 });
 
-// wildcard route to 404 page
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/404.html'))
-);
-
 // post 
-app.post('/notes', (req, res) => {
+app.post('/api/notes', (req, res) => {
   // log that a POST req was received
   console.info(`${req.method} request received to add a new note to db.`)
 
@@ -54,6 +49,7 @@ app.post('/notes', (req, res) => {
     const newNote = {
       title,
       text,
+      id: uuidv4()
     }
 
     // read existing notes from db.json
@@ -70,7 +66,7 @@ app.post('/notes', (req, res) => {
         // write the updated notes array back to db.json
         fs.writeFile(path.join(__dirname, 'db', 'db.json'), JSON.stringify(notes, null, 2), (err) => {
           if (err) {
-            console.error(err);
+            console.error(err, 'There was a problem when tryiong to write to db.json.');
           }
           console.log('A new note has been written to JSON file');
           res.json(newNote); // respond with the newly created note
@@ -79,5 +75,10 @@ app.post('/notes', (req, res) => {
     }); 
   }
 });
+
+// wildcard route sends you back to index.html
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/index.html'))
+);
 
   app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
