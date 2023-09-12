@@ -12,6 +12,8 @@
 This Note Taker is a simple web application that allows users to create and manage their notes. Users can create new notes with a title and text, view existing notes, and delete notes they no longer need.
 
 ## Installation
+[Local Machine Demo](https://watch.screencastify.com/v/LTVr1ZqjmQ3GefdNsPIs)  
+If the link above does not work, you can find the demo videos in public/assets/demo-videos.
 To run the Note Taker locally on your machine, follow these steps:
 1. Clone the repository to your local machine.
 2. Navigate to the project directory using your terminal.
@@ -20,6 +22,8 @@ To run the Note Taker locally on your machine, follow these steps:
 5. Open your web browser and go to `http://localhost:3001` to access the Note Taker.
 
 ## Usage
+[Heroku Note Taker Demo](https://watch.screencastify.com/v/L7ygKo5SjnNzSRaevzJV)
+If the link above does not work, you can find the demo videos in public/assets/demo-videos.
 1. Open the Note Taker in your web browser.
 2. Click on the "Get Started" button to access the notes interface.
 3. To create a new note, click on the pencil icon in the upper right corner.
@@ -38,3 +42,4 @@ To run the Note Taker locally on your machine, follow these steps:
 MIT
 
 ## Deployed Site
+https://zelstart-notetaker-14c86aee7484.herokuapp.com/  
